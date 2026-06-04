@@ -186,7 +186,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 arow.font = NSFont.monospacedSystemFont(ofSize: 11, weight: .regular)
                 arow.textColor = stateColor(a.state)
                 arow.cwd = p.cwd
-                arow.toolTip = "Subagent (\(a.agentType)) in \(p.project)"
+                arow.toolTip = "Click to open \(p.cwd) in VSCode (subagent: \(a.agentType))"
                 arow.menu = contextMenu
                 stack.addArrangedSubview(arow)
             }
