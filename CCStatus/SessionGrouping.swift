@@ -58,6 +58,10 @@ enum SessionGrouping {
                       sessionStale: Int,
                       agentStale: Int) -> [ProjectRow] {
 
+        // Drop records with no cwd: they cannot be grouped to a real project
+        // and would otherwise collapse into one phantom row.
+        let records = records.filter { !$0.cwd.isEmpty }
+
         let mains = records
             .filter { $0.agentId == nil }
             .filter { now - $0.ts <= sessionStale }

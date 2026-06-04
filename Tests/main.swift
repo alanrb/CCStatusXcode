@@ -62,4 +62,12 @@ expect(p6.count == 1, "orphan agent yields a project row")
 expect(p6[0].state == "working", "orphan project rolled up from agent")
 expect(p6[0].project == "a", "orphan project name from cwd basename")
 
+// 7. records with empty cwd are dropped (no phantom "unknown" project)
+let r7 = [
+    StatusRecord(state: "working", project: "?", cwd: "", ts: now-1, agentId: nil,   agentType: nil),
+    StatusRecord(state: "working", project: "?", cwd: "", ts: now-1, agentId: "z",   agentType: "x"),
+]
+let p7 = SessionGrouping.build(records: r7, now: now, sessionStale: 1000, agentStale: 300)
+expect(p7.isEmpty, "empty-cwd records produce no project rows")
+
 print("ALL PASS")
