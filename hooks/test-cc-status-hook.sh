@@ -14,7 +14,7 @@ echo '{"session_id":"S1","cwd":"/proj/A"}' | "$HOOK" working
 # subagent writes <sid>__<aid>.json including agent_type
 echo '{"session_id":"S1","cwd":"/proj/A","agent_id":"AG1","agent_type":"Explore"}' | "$HOOK" working
 [ -f "$CC_STATUS_DIR/S1__AG1.json" ] || fail "agent file not written"
-grep -q '"agent_type": "Explore"' "$CC_STATUS_DIR/S1__AG1.json" || fail "agent_type not stored"
+python3 -c "import json,sys; sys.exit(0 if json.load(open('$CC_STATUS_DIR/S1__AG1.json')).get('agent_type')=='Explore' else 1)" || fail "agent_type not stored"
 
 # remove with agent_id removes only that agent file
 echo '{"session_id":"S1","cwd":"/proj/A","agent_id":"AG1"}' | "$HOOK" remove

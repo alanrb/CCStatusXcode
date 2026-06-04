@@ -17,7 +17,7 @@ STATE="$1" STATE_DIR="$STATE_DIR" python3 -c '
 import json, os, sys, time, glob
 
 data = json.load(sys.stdin)
-state = os.environ.get("STATE", "idle")
+state = os.environ.get("STATE") or "idle"
 state_dir = os.environ["STATE_DIR"]
 
 session_id = data.get("session_id")
