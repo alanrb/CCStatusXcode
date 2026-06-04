@@ -4,7 +4,7 @@
 //
 //  Pure (Foundation-only, no AppKit) logic that turns raw state records into
 //  a project -> agents tree. Kept free of Cocoa so it can be unit-tested with
-//  a standalone `swiftc` invocation (see Tests/SessionGroupingTests.swift).
+//  a standalone `swiftc` invocation (see Tests/main.swift).
 //
 
 import Foundation
