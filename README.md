@@ -18,6 +18,12 @@ There's also a small **×** in the top-right corner to quit.
 No Dock icon — it's a floating widget visible on every Space,
 including over fullscreen apps.
 
+## Screenshots
+
+| All idle | Needs attention + subagents |
+|---|---|
+| ![All sessions idle](screenshots/sessions.png) | ![A session needs you, with running subagents](screenshots/agents.png) |
+
 ---
 
 # Setup
@@ -33,12 +39,20 @@ Pick **one** of these. You do **not** need to do both.
 1. Download **[`dist/CCStatus-v1.0.zip`](dist/CCStatus-v1.0.zip)**
    (universal app, Intel + Apple Silicon, macOS 13+).
 2. Unzip it and move **CC Status.app** into your `/Applications` folder.
-3. **Right-click** the app → **Open** → click **Open** in the dialog.
-   - On macOS 15 (Sequoia), if there's no Open button: open
-     **System Settings → Privacy & Security**, scroll down, click **Open Anyway**.
-   - This bypass is only needed on the *first* launch. (The app is signed to run
-     locally but not notarized, because notarization requires a paid Apple
-     Developer account.)
+3. First launch — get past Gatekeeper (only needed **once**):
+   - **Right-click** the app → **Open** → click **Open** in the dialog.
+   - On macOS 15 (Sequoia) you'll likely see *"Apple could not verify
+     'CC Status.app' is free of malware…"* and **no Open button**. Instead open
+     **System Settings → Privacy & Security**, scroll down to the
+     *"CC Status.app was blocked"* notice, and click **Open Anyway**.
+   - Still stuck? Strip the quarantine flag in Terminal, then open it:
+     ```bash
+     xattr -dr com.apple.quarantine "/Applications/CC Status.app"
+     open "/Applications/CC Status.app"
+     ```
+   - This is needed because the app is signed to run locally but **not
+     notarized** (notarization requires a paid Apple Developer account) — not
+     because anything is wrong with it.
 
 ### Option B — Build from source (needs Xcode)
 
